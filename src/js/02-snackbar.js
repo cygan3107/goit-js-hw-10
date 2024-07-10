@@ -2,6 +2,11 @@
 import iziToast from 'izitoast';
 // Kolejny import stylów
 import 'izitoast/dist/css/iziToast.min.css';
+iziToast.show({
+  title: 'Hey',
+  message: 'What would you like to add?',
+});
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const formRef = document.querySelector('.form');
 const formsItemsRef = {
