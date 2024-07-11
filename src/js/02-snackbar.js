@@ -14,10 +14,10 @@ formRef.addEventListener('submit', event => {
   for (let i = 0; i < formsItemsRef.delay.value; i += 1) {
     createPromise(i, Number(formsItemsRef.delay.value))
       .then(delay => {
-        iziToast.success(`✅ Fulfilled promise in ${delay}ms`);
+        iziToast.success({message:`✅ Fulfilled promise in ${delay}ms`});
       })
       .catch(delay => {
-        iziToast.warning(`❌ Rejected promise in ${delay}ms`);
+        iziToast.warning({message:`❌ Rejected promise in ${delay}ms`});
       });
   }
 });
