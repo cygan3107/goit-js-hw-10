@@ -2,10 +2,6 @@
 import iziToast from 'izitoast';
 // Kolejny import stylów
 import 'izitoast/dist/css/iziToast.min.css';
-iziToast.show({
-  title: 'Hey',
-  message: 'What would you like to add?',
-});
 
 const formRef = document.querySelector('.form');
 const formsItemsRef = {
@@ -15,22 +11,19 @@ const formsItemsRef = {
 
 formRef.addEventListener('submit', event => {
   event.preventDefault();
-  for (let i = 0; i < formsItemsRef.amount.value; i += 1) {
-    createPromise(
-      i + 1,
-      Number(formsItemsRef.delay.value) + i * Number(formsItemsRef.state.value)
-    )
-      .then(value => {
-        Notify.success(value);
+  for (let i = 0; i < formsItemsRef.delay.value; i += 1) {
+    createPromise(i, Number(formsItemsRef.delay.value))
+      .then(delay => {
+        iziToast.success(`✅ Fulfilled promise in ${delay}ms`);
       })
-      .catch(err => {
-        Notify.failure(err);
+      .catch(delay => {
+        iziToast.warning(`❌ Rejected promise in ${delay}ms`);
       });
   }
 });
 
 function createPromise(delay) {
-  return new Promise((res, rej) => {
+return new Promise((res, rej) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
