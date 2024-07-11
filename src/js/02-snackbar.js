@@ -4,13 +4,12 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
-const formsItems = {
-  delay: document.querySelector('input[name="delay"]'),
-  state: document.querySelector('input[name="state"]'),
-};
 
 form.addEventListener('submit', event => {
   event.preventDefault();
+  
+const delay = form.elements.delay.value;
+const state = form.elements.state.value;
   
     createPromise(delay,state)
       .then(delay => {
